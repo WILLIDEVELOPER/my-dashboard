@@ -1,0 +1,136 @@
+---
+import Section from './Section.astro';
+
+interface Project {
+  title: string;
+  description: string;
+  longDescription: string;
+  technologies: string[];
+  features: string[];
+  image?: string;
+  liveUrl?: string;
+  repoUrl?: string;
+  highlighted?: boolean;
+}
+
+const projects: Project[] = [
+  {
+    title: 'Plataforma de Streaming',
+    description: 'Plataforma tipo Netflix con catálogo dinámico, autenticación y renderizado híbrido SSR/SSG.',
+    longDescription: 'Aplicación de streaming completa con interfaz moderna, sistema de autenticación, catálogo dinámico con búsqueda avanzada y renderizado híbrido para máximo rendimiento.',
+    technologies: ['Next.js', 'Express.js', 'TypeScript', 'SSR/SSG'],
+    features: [
+      'Autenticación y gestión de sesiones',
+      'Catálogo dinámico con filtros',
+      'Renderizado híbrido SSR/SSG',
+      'Deploy productivo',
+    ],
+    highlighted: true,
+  },
+  {
+    title: 'E-commerce Full Stack',
+    description: 'Tienda online con panel administrativo, gestión de inventario y procesamiento de pedidos.',
+    longDescription: 'Plataforma de comercio electrónico completa con panel de administración, sistema de inventario, procesamiento de órdenes y base de datos PostgreSQL en la nube.',
+    technologies: ['Next.js', 'Express.js', 'PostgreSQL', 'Neon'],
+    features: [
+      'Panel administrativo completo',
+      'Gestión de productos y pedidos',
+      'PostgreSQL con Neon',
+      'Interfaz optimizada para conversión',
+    ],
+    highlighted: true,
+  },
+  {
+    title: 'Software Médico',
+    description: 'Sistema de gestión médica con módulos especializados y referenciación de pacientes.',
+    longDescription: 'Aplicación web para el sector salud con módulos de gestión médica, sistema de referenciación y endpoints optimizados para operaciones críticas.',
+    technologies: ['React', 'Svelte', 'TypeScript', 'Docker', 'REST APIs'],
+    features: [
+      'Módulos médicos especializados',
+      'Sistema de referenciación',
+      'APIs REST optimizadas',
+      'Despliegue con Docker',
+    ],
+    highlighted: false,
+  },
+];
+---
+
+<Section id="proyectos" title="Proyectos" subtitle="Algunos de los proyectos en los que he trabajado">
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+    {
+      projects.map((project) => (
+        <article class="animate-on-scroll group relative flex flex-col rounded-2xl border border-dark-800 bg-dark-900/30 overflow-hidden hover:border-primary-500/20 hover:bg-dark-900/60 transition-all duration-300">
+          {/* Gradient top accent */}
+          <div class="h-1 bg-gradient-to-r from-primary-600 to-primary-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+          <div class="flex flex-col flex-1 p-6">
+            {/* Header */}
+            <div class="flex items-start justify-between mb-3">
+              <div class="p-2.5 rounded-xl bg-primary-500/10 text-primary-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                </svg>
+              </div>
+              <div class="flex items-center gap-2">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener"
+                    class="p-2 text-dark-400 hover:text-primary-400 transition-colors"
+                    aria-label={`Ver demo de ${project.title}`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                  </a>
+                )}
+                {project.repoUrl && (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener"
+                    class="p-2 text-dark-400 hover:text-primary-400 transition-colors"
+                    aria-label={`Ver código de ${project.title}`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* Content */}
+            <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-primary-300 transition-colors">
+              {project.title}
+            </h3>
+            <p class="text-sm text-dark-400 leading-relaxed mb-4 flex-1">
+              {project.longDescription}
+            </p>
+
+            {/* Features */}
+            <ul class="space-y-1.5 mb-5">
+              {project.features.map((feature) => (
+                <li class="flex items-center gap-2 text-xs text-dark-400">
+                  <div class="w-1 h-1 rounded-full bg-primary-500 flex-shrink-0"></div>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            {/* Technologies */}
+            <div class="flex flex-wrap gap-2 mt-auto pt-4 border-t border-dark-800">
+              {project.technologies.map((tech) => (
+                <span class="px-2 py-0.5 text-xs font-mono text-primary-300/80 bg-primary-500/5 rounded border border-primary-500/10">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Section>

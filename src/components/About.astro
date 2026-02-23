@@ -1,0 +1,58 @@
+---
+import Section from './Section.astro';
+
+const highlights = [
+  { icon: '🏗️', label: 'Sistemas escalables', description: 'Arquitectura limpia y mantenible' },
+  { icon: '⚡', label: 'Alto rendimiento', description: 'Optimización y buenas prácticas' },
+  { icon: '🚀', label: 'Deploy en producción', description: 'Docker, CI/CD y automatización' },
+  { icon: '🎨', label: 'UI/UX moderno', description: 'Interfaces intuitivas y accesibles' },
+];
+---
+
+<Section id="sobre-mi" title="Sobre mí" subtitle="Un poco más sobre mi perfil profesional">
+  <div class="grid md:grid-cols-5 gap-10 items-start">
+    <!-- Text -->
+    <div class="md:col-span-3 space-y-5">
+      <p class="animate-on-scroll text-dark-300 leading-relaxed text-lg">
+        Soy <span class="text-white font-medium">Ingeniero de Sistemas</span> con experiencia como
+        desarrollador Full Stack y un fuerte enfoque en el ecosistema Frontend.
+        Trabajo con tecnologías como <span class="text-primary-400">React</span>,
+        <span class="text-primary-400">Svelte</span>,
+        <span class="text-primary-400">Next.js</span> y
+        <span class="text-primary-400">TypeScript</span> para construir
+        aplicaciones web de alto rendimiento.
+      </p>
+      <p class="animate-on-scroll text-dark-300 leading-relaxed text-lg">
+        En el backend, manejo <span class="text-white">C#/.NET</span>,
+        <span class="text-white">Express.js</span> y
+        <span class="text-white">NestJS</span>. Tengo experiencia real en
+        despliegues productivos con Docker, configuración de CI/CD y
+        automatización de procesos.
+      </p>
+      <p class="animate-on-scroll text-dark-300 leading-relaxed text-lg">
+        Mi mentalidad está orientada a la
+        <span class="text-white font-medium">arquitectura limpia</span>,
+        el código mantenible y la creación de sistemas que funcionen de
+        forma autónoma y escalable. Cada proyecto es una oportunidad para
+        aplicar las mejores prácticas de la industria.
+      </p>
+    </div>
+
+    <!-- Highlights -->
+    <div class="md:col-span-2 space-y-4 stagger-children">
+      {
+        highlights.map((item) => (
+          <div class="animate-on-scroll group p-4 rounded-xl border border-dark-800 bg-dark-900/50 hover:border-primary-500/20 hover:bg-dark-800/50 transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <span class="text-2xl flex-shrink-0 mt-0.5" role="img" aria-hidden="true">{item.icon}</span>
+              <div>
+                <h3 class="text-white font-medium text-sm">{item.label}</h3>
+                <p class="text-dark-400 text-sm mt-0.5">{item.description}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Section>

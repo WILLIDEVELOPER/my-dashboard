@@ -1,0 +1,118 @@
+---
+import Section from './Section.astro';
+
+interface ExperienceItem {
+  role: string;
+  company: string;
+  period: string;
+  type: string;
+  description: string;
+  achievements: string[];
+  technologies: string[];
+}
+
+const experiences: ExperienceItem[] = [
+  {
+    role: 'Desarrollador Web Full Stack',
+    company: 'Planeta IP',
+    period: 'Ago 2024 – Presente',
+    type: 'Tiempo completo',
+    description: 'Desarrollo de aplicaciones web con enfoque frontend para el sector salud. Diseño e implementación de sistemas escalables y automatizados.',
+    achievements: [
+      'Desarrollo frontend con React y Svelte para módulos médicos críticos',
+      'Integración robusta con APIs REST y diseño de endpoints amigables',
+      'Implementación de sistema de referenciación médica',
+      'Configuración de Docker y pipelines de despliegue automatizado',
+      'Desarrollo de software médico con altos estándares de calidad',
+    ],
+    technologies: ['React', 'Svelte', 'TypeScript', 'Docker', 'REST APIs', 'CI/CD'],
+  },
+  {
+    role: 'Freelance Developer',
+    company: 'Plataforma tipo Netflix',
+    period: '2023',
+    type: 'Freelance',
+    description: 'Diseño y desarrollo completo de una plataforma de streaming con catálogo dinámico, autenticación y renderizado híbrido.',
+    achievements: [
+      'Arquitectura full stack con Next.js en frontend y Express en backend',
+      'Sistema de autenticación seguro con manejo de sesiones',
+      'Catálogo dinámico con búsqueda y filtrado avanzado',
+      'Implementación de SSR/SSG para óptimo rendimiento y SEO',
+      'Deploy productivo con configuración de infraestructura',
+    ],
+    technologies: ['Next.js', 'Express.js', 'TypeScript', 'SSR/SSG', 'Auth'],
+  },
+  {
+    role: 'Freelance Developer',
+    company: 'E-commerce',
+    period: '2022 – 2023',
+    type: 'Freelance',
+    description: 'Desarrollo de plataforma e-commerce completa con panel administrativo, gestión de inventario y procesamiento de pedidos.',
+    achievements: [
+      'Plataforma e-commerce full stack con Next.js y Express',
+      'Base de datos PostgreSQL alojada en Neon para alta disponibilidad',
+      'Panel administrativo completo para gestión de productos y pedidos',
+      'Sistema de gestión de inventario y procesamiento de órdenes',
+      'Interfaz de usuario optimizada para conversión',
+    ],
+    technologies: ['Next.js', 'Express.js', 'PostgreSQL', 'Neon', 'TypeScript'],
+  },
+];
+---
+
+<Section id="experiencia" title="Experiencia" subtitle="Mi trayectoria profesional">
+  <div class="relative">
+    <!-- Timeline line -->
+    <div class="absolute left-0 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500/50 via-dark-700 to-transparent"></div>
+
+    <div class="space-y-12 stagger-children">
+      {
+        experiences.map((exp, index) => (
+          <div class="animate-on-scroll relative pl-8 md:pl-20">
+            {/* Timeline dot */}
+            <div class="absolute left-0 md:left-8 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary-500 ring-4 ring-dark-950 z-10"></div>
+
+            <div class="group p-6 rounded-2xl border border-dark-800 bg-dark-900/30 hover:border-primary-500/15 hover:bg-dark-900/60 transition-all duration-300">
+              {/* Header */}
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-white">{exp.role}</h3>
+                  <p class="text-primary-400 font-medium">{exp.company}</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <span class="text-sm text-dark-400">{exp.period}</span>
+                  <span class="px-2.5 py-0.5 text-xs font-medium rounded-full bg-primary-500/10 text-primary-300 border border-primary-500/20">
+                    {exp.type}
+                  </span>
+                </div>
+              </div>
+
+              <p class="text-dark-400 mb-4 leading-relaxed">{exp.description}</p>
+
+              {/* Achievements */}
+              <ul class="space-y-2 mb-5">
+                {exp.achievements.map((achievement) => (
+                  <li class="flex items-start gap-2 text-sm text-dark-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                    </svg>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Technologies */}
+              <div class="flex flex-wrap gap-2">
+                {exp.technologies.map((tech) => (
+                  <span class="px-2.5 py-1 text-xs font-mono font-medium text-dark-300 bg-dark-800 rounded-md border border-dark-700">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Section>
